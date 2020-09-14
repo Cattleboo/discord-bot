@@ -1,0 +1,11 @@
+{
+  "token": "YOUR-TOKEN-GOES-HERE",
+  "prefix": "--",
+  "owner": "OWNER-TAG-HERE",
+  "developers": [
+      "MAKE-SURE-TO-LIST-ALL-YOUR-DEVELOPERS-IDS-HERE",
+      "AND-HERE",
+      "AND-HERE"
+  ],
+  "invite": "PASTE-YOUR-SERVER-INVITE-HERE-IF-YU-HAVE-ONE"
+}
