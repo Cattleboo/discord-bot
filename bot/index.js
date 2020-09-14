@@ -9,8 +9,12 @@ const {
 	invite
 } = require("./config.json");
 
+const catAPIKey = "your api key here https://thecatapi.com/";
+
 //Libraries
 const chalk = require("chalk");
+const request = require('request');
+const uriEncode = require('strict-uri-encode');
 
 //APIs
 
@@ -74,6 +78,39 @@ client.on(message, "message" => {
 		};
 
 		message.channel.send({embed: avatarEmbed});
+	}
+	
+	if(command === prefix + "cat"){
+		request("https://api.thecatapi.com/v1/categories", function(err, response, body){
+			if(err) return console.log("category error: " + err)
+			
+			var category = response.id;
+		});
+		
+		const pURL = "https://api.thecatapi.com/images/search?limit=5&id=" + category;
+		
+		const URL = uriEncode(pURL)
+		
+		request(URL, function(err, response, body){
+			if(err) return console.log(err);
+			
+			var randomIndex = Math.floor(Math.random * response.url.length)
+			
+			const catEmbed = {
+				color: 0x99ff00,
+				title: "Here's your random cat pic!",
+				image: {
+					url: response.url[randomIndex]
+				},
+				footer: {
+					text: "More info: " + response.wikipedia_url
+				}
+			};
+			
+			message.channel.send({embed: catEmbed});
+			
+			//Send cat info + user input
+		})
 	}
 
 
